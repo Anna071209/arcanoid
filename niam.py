@@ -17,10 +17,10 @@ HEIGHT = 600
 PADDLE_WIDTH = 100
 PADDLE_HEIGHT = 10
 wi = False
-BALL_RADIUS = 200
+BALL_RADIUS = 10
 BALL_SPEED_X = 5
 BALL_SPEED_Y = -5
-leve = 5
+leve = 1
 BLOCK_WIDTH = 70
 BLOCK_HEIGHT = 20
 BLOCK_MARGIN = 10
@@ -278,6 +278,7 @@ class Paddle(pygame.sprite.Sprite):
 class Bonus(pygame.sprite.Sprite):
     type_of_bonus = ["Шар увеличение.png", "Шар уменьшение.png", 'Ускорение шара.png', "Замедление шара.png",
                      "Панель увеличение.png", "Панель уменьшение.png"]
+
     def __init__(self):
         super().__init__()
         self.n = 8
@@ -291,7 +292,7 @@ class Bonus(pygame.sprite.Sprite):
         self.rect.x = randint(100, 600)
         self.rect.y = 100
         self.speed_x = 0
-        self.speed_y = 2
+        self.speed_y = 3
 
     def cut_sheet(self, sheet, columns, rows):
         self.rect = pygame.Rect(0, 0, sheet.get_width() // columns,
@@ -397,10 +398,6 @@ class Block(pygame.sprite.Sprite):
                 bonus = Bonus()
                 all_sprites.add(bonus)
                 all_bonus.add(bonus)
-            #     TODO
-            # жизни
-            # картинки и анимация к бонусам
-
             if self.hp == 1:
                 Block1(self.rect.x, self.rect.y, all_blocks, all_sprites)
             ball.speed_y *= -1
